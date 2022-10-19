@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// int fact(int n)
+// {
+//     if(n==0 || n==1) return 1;
+//     return n*fact(n-1);
+// }
+int zero(int n)
+{
+    int ans=0;
+    for(int i=5;i<=n;i*=5)
+    {
+        ans+= n/i;
+    }
+    return ans;
+}
+int main()
+{
+    cout<<zero(100);
+    return 0;
+}

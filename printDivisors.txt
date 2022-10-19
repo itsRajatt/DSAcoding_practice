@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void printDiv(int n)
+{
+    for(int i=1;i<=n;i++)
+    {
+        if(n%i==0) cout<<i<<" ";
+    }
+    cout<<endl;
+}
+
+void pD1(int n) //not in order
+{
+    for(int i=1;i*i<=n;i++)
+    {
+        if(n%i==0) {
+            cout<<i<<" ";
+        if(i!=n/i) cout<<n/i<<" ";
+    }
+        
+    }
+}
+
+void pD(int n)
+{
+    int i;
+    for(i=1;i*i<n;i++)
+    {
+        if(n%i==0) cout<<i<<" ";
+    }
+    for(;i>=1;i--)
+    {
+        if(n%i==0) cout<<n/i<<" ";
+    }
+}
+
+int main()
+{
+    printDiv(34);
+    pD(118);
+    return 0;
+}

@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//inorder LrR , point top
+//preOrder rLR , point right
+//postOrder LRr , point left 
+
+struct Node
+{
+    int key;
+    Node* left;
+    Node *right;
+    Node(int k){
+        key=k;
+        left=right=nullptr;
+    }
+};
+
+void inOrder(Node* root) //O(n) --timeComp , O(height+1)==O(h) --spaceComp/heightOfBTree
+{
+    if(root)
+    {
+        inOrder(root->left);
+        cout<<root->key<<" ";
+        inOrder(root->right);
+    }
+}
+
+void preOrder(Node *root) //same as inOrder
+{
+    if(root)
+    {
+        cout<<root->key<<" ";
+        preOrder(root->left);
+        preOrder(root->right);
+    }
+}
+
+void postOrder(Node *root) //same as inOrder
+{
+    if(root)
+    {
+        postOrder(root->left);
+        postOrder(root->right);
+        cout<<root->key<<" ";
+    }
+}
+
+int main() {
+    
+
+    return 0;
+}

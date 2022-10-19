@@ -1,0 +1,59 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node(int x)
+    {
+        data=x;
+        next=nullptr;
+    }
+};
+//naive
+/*void printMiddle(Node * head){
+    if(head==NULL)return;
+    int count=0;
+    Node *curr;
+    for(curr=head;curr!=NULL;curr=curr->next)
+        count++;
+    curr=head;
+    for(int i=0;i<count/2;i++)
+        curr=curr->next;
+    cout<<curr->data;
+}
+*/
+
+
+Node *middleLL(Node *head)
+{
+     Node *p=head;
+    Node *q=head;
+    while(q && q->next)
+    {
+        p=p->next;                 //to increase by 1
+        q=q->next->next;           //to increase by 2
+    }
+    return p;
+    
+}
+}
+
+void printLL(Node *head)
+{
+    if(!head) {cout<<"-1"<<" "; return ;}
+    cout<<head->data<<" ";
+    head=head->next;
+}
+
+int main() {
+    Node *head=new Node(5);
+    head->next=new Node(10);
+    head->next->next=new Node(25);
+    head=middleLL(head);
+    printLL(head);
+
+    return 0;
+}

@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//stack stl --> push , pop , top(peek same) , emplace , size , empty . all O(1)
+// stack can be implemented on any container that has back(),size(),empty(),push_back(),pop_back()... generally deque used for this purpose in stl of c++.
+
+bool matching(char a,char b){
+    return (( a=='(' && b==')' )||( a=='[' && b==']' )||( a=='{' && b=='}' ));
+}
+
+bool isBalanced(string str){
+      
+    stack<char> s; 
+    
+    for (int i = 0; i < str.length(); i++)  
+    { 
+        if (str[i] == '(' || str[i] == '[' || str[i] == '{')  
+        {  
+            s.push(str[i]); 
+        } 
+        else{
+        if (s.empty()==true) 
+            return false;
+        else if(matching(s.top(),str[i])==false)
+            return false;
+        else
+            s.pop();
+        }
+    }    
+    return (s.empty()==true); 
+}
+
+int main()
+{
+    string str = "{()}"; 
+    
+    if (isBalanced(str)) 
+        cout << "Balanced"; 
+    else
+        cout << "Not Balanced"; 
+
+    return 0; 
+}

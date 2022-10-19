@@ -1,0 +1,74 @@
+#include <iostream>
+#include <map>
+
+//sorted stream of data with key value pair
+//de priority queue with key val pair
+
+
+using namespace std;
+//auto ==-> map<int,int>::iterator
+//set stores key so single object
+//map stores key value pair , items are ordered acc to keys and by default in increasing order
+//greater<int>> also works and does same thing as in set
+//functions :
+/*
+begin , end can be used to find smallest and largest ; the it is same as in other stl's
+
+size(),empty(),clear(),begin(),end() and rend rebegin types --O(1)
+at(),find() ,count(),insert(),lower_bound(),upper_bound(),erase() generally O(1) if it passed,[] --O(logn)
+
+
+*/
+
+int main() {
+map<int,int> m;
+m.insert({10,200});
+m[5]=100; //same as prev {5,100} // diff is if accesed a absent key then it is inserted at that time with a default value , can be used to update the values too
+m.insert({3,300});
+//m.insert({3,400}) not allowed and is ignored , same as set
+
+cout<<m.size()<<" ";
+m.at(10)=300; // works same as square bracket but doesn't insert and returns reference and causes exception if key not there
+for(auto &x : m)
+{
+    cout<<x.first<<" "<<x.second<<" ";
+}
+// (*it).first to access first element of it
+if(m.find(5)==m.end()) cout<<"Not Found"<<" ";
+//returns it of address having that record otherwise end()
+else cout<<"Found";
+
+
+//count also used to find element . returns 1 or 0
+
+// map<int,string> m;
+// 	m.insert({5,"gfg"});
+// 	m.insert({2,"ide"});
+// 	m.insert({1,"practice"});
+
+// 	if(m.find(5)==m.end())
+// 	    cout<<"Not found";
+// 	else
+// 	    cout<<"Found";
+// 	    cout<<endl;
+// 	if(m.count(2)==0)
+// 	    cout<<"Not found";
+// 	else
+// 	    cout<<"Found";
+// 	    cout<<endl;
+// 	auto it=m.lower_bound(7); //get it to the pair , just greater if not found , if larger than largest then get end
+
+//upper bound returns just next in map always , if larger than largest then end
+
+// 	if(it!=m.end())
+// 	    cout<<(*it).first<<" ";
+// 	else
+// 	    cout<<"No Equal or Greater Value";
+	    
+// 	return 0;
+
+//erase deletes the key . can also use m.erase(m.find(3)) and works.ke and it passed both work . can also pass begin and end iterator ex. m.erase(m.find(2),m.end()) -->removes all after 2
+
+
+return 0;
+}

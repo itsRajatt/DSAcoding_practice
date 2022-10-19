@@ -1,0 +1,32 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+bool is_sorted(int *a,int n)
+{
+   for(int i=0;i<n;i++)
+   {
+       for(int j=i+1;j<n;j++)
+       {
+           if(a[j]<a[i]) return 0;
+       }
+   }
+   return 1;
+}
+
+bool ois_sorted(int *a,int n)
+{
+   for(int i=1;i<n;i++)
+   {
+       if(a[i]<a[i-1]) return 0;
+   }
+   return 1;
+}
+
+int main() {
+    // Write C++ code here
+    int a[]={1,1,1,1,1,12};
+    cout<<ois_sorted(a,6);
+
+    return 0;
+}

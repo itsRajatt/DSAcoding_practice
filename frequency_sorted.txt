@@ -1,0 +1,29 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+void freq(int a[],int n)
+{
+   int fq=1,i=1;
+   while(i<n)
+   {
+       while(i<n && a[i]==a[i-1]) 
+       {
+           fq++;
+           i++;
+       }
+       cout<<a[i-1]<<" "<<fq<<endl;
+       i++;
+       fq=1;
+   }
+       if(n==1||a[n-1]!=a[n-2]) cout<<a[n-1]<<" "<<'1'<<endl;
+   }
+
+int main() {
+    // Write C++ code here
+    int a[]={1,1,2,2,2,3};
+    freq(a,6);
+    
+    
+    return 0;
+}

@@ -1,0 +1,47 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int trap_rain(int *a,int n)
+{
+    int res=0;
+    for(int i=1;i<n-1;i++)
+    {
+        int lmax=a[i];
+        for(int j=0;j<i;j++)
+        {
+            lmax=max(lmax,a[j]);
+        }
+        
+         int rmax=a[i];
+        for(int j=i+1;j<n;j++)
+        {
+            rmax=max(lmax,a[j]);
+        }
+        res+=(min(lmax,rmax)-a[i]);
+    }
+    return res;
+}
+
+int rain(int *a,int n) //O(n)
+{
+    int l[n],r[n];
+    int res=0;
+    
+    l[0]=a[0];
+    for(int i=1;i<n;i++) l[i]=max(a[i],l[i-1]);
+    
+    r[n-1]=a[n-1];
+    for(int i=n-2;i>=0;i--) r[i]=max(a[i],r[i+1]);
+
+    for(int i=1;i<n-1;i++) res+=(min(l[i],r[i])-a[i]);
+    return res;
+}
+
+int main() {
+    // Write C++ code here
+   int a[]={5,0,6,2,3};
+   cout<<rain(a,5);
+
+    return 0;
+}

@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//inorder LrE , point top
+//preOrder rLR , point right
+//postOrder LRr , point left 
+
+struct Node
+{
+    int key;
+    Node* left;
+    Node *right;
+    Node(int k){
+        key=k;
+        left=right=nullptr;
+    }
+};
+
+int height(Node *root)
+{
+    if(!root) return 0;
+    return max(height(root->left),height(root->right))+1;
+}
+
+void printAtk(Node *root, int k)
+{
+    if(!root) return ;
+    if(k==0) cout<<root->key<<" ";
+    else {
+        printAtk(root->left,k-1);
+        printAtk(root->right,k-1);
+    }
+}
+
+void levelOrder(Node *root)//BFS of BTree O(h*n) //naiveSol O(n*n) worst case
+{
+    int h=height(root);
+    int i=0;
+    while(i<=h)
+    {
+        printAtk(root,i);
+        i++;
+    }
+}
+
+int main() {
+    Node *root=new Node(10);
+	root->left=new Node(20);
+	root->right=new Node(30);
+	root->right->left=new Node(40);
+	root->right->right=new Node(50);
+	
+	levelOrder(root);
+
+    return 0;
+}

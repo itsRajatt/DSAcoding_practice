@@ -1,0 +1,42 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+
+void bin(int n) //binary
+{
+    if(!n) return;
+    bin(n/2);
+    std::cout<<n%2;
+}
+
+int fun(int n)
+{
+    if(n==1) return 0;
+    return 1+fun(n/2); // div by 2 -> log base 2 ; for log base x , div by x and change base condition to n<x return 0
+}
+int fact(int n, int k=1)//tail rec
+{
+    if(n==0||n==1) return k;
+    return fact(n-1,k*n);
+}
+
+void prt_nto1(int n)
+{
+    if(n==0) return;
+    cout<<n<<" ";
+    prt_nto1(n-1);
+}
+void prt_1ton(int n)
+{
+    if(n==0) return;
+    prt_1ton(n-1);
+    cout<<n<<" ";
+}
+
+int main() {
+    // Write C++ code here
+    
+    bin(7);
+    std::cout<<std::endl<<fun(64);
+
+    return 0;
+}

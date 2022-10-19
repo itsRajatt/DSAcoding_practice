@@ -1,0 +1,23 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+//max no of pieces to add upto n
+int rope(int n , int a , int b , int  c)
+{
+    if(!n) return 0;
+    if(n<0) return -1;
+    
+    int res = max(rope(n-a,a,b,c),
+    max(rope(n-b,a,b,c),
+    rope(n-c,a,b,c)));
+    if(res==-1) return -1;
+    return res+1;
+}
+
+int main() {
+    // Write C++ code here
+cout<<rope(5,3,2,5);
+
+    return 0;
+}

@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    
+    Node(int x)
+    {
+        data=x;
+       next=nullptr
+    }
+};
+
+Node *delNode(Node *t)
+{
+    //copy next's data and change next to next's next
+    Node *tmp=t->next;
+    t->data=tmp->data;
+    t->next=tmp->next;
+    delete tmp;
+
+    
+    returnt ;
+}
+
+
+
+int main()
+{
+    
+    
+    
+    return 0;
+}

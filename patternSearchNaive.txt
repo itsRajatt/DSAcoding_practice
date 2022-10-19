@@ -1,0 +1,42 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+
+//pattern searching 
+
+void naive_patt(string &text , string &patt) //O((n-m+1)*m)
+{
+    int m=patt.length();
+    int n=text.length();
+    for(int i=0;i<=(n-m);i++)
+    {
+        int j;
+        for(j=0;j<m;j++) if(patt[j]!=text[i+j]) break;
+            if(j==m) cout<<i<<" ";
+    }
+}
+
+
+
+//naive for distinct char patterns
+ void naive_dpatt(string &text , string &patt) //O(n) as if 4 iteration in inside loop then saves 4 in outside one so neutrlize it
+{
+    int m=patt.length();
+    int n=text.length();
+    for(int i=0;i<=(n-m); ) //m pattern sz in n sized text --> n-m checks 
+    {
+        int j;
+        for(j=0;j<m;j++) if(patt[j]!=text[i+j]) break;
+            if(j==m) cout<<i<<" "; //is pattern found / not
+            if(j==0) i++; //is j 0
+            else i=i+j;//if some match then slide over them and start
+    }
+}
+int main() 
+{ 
+   string str="ABBABBADC";
+   string pat="AB";
+   naive_dpatt(str,pat);
+  
+    
+    return 0; 
+} 

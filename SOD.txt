@@ -1,0 +1,27 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int SOD(int n) //recursive
+{
+    if(n<=9) return n;
+    
+    return (n%10)+SOD(n/10);
+}
+
+int SOD1(int n) //iterative
+{
+    int res=0;
+    while(n>0)
+    {
+        res+=(n%10);
+        n/=10;
+    }
+    return res;
+}
+int main() {
+    // Write C++ code here
+cout<<SOD1(12354);
+
+    return 0;
+}

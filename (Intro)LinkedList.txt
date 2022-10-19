@@ -1,0 +1,108 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+
+struct Node{
+    int data;
+    Node* next;
+    Node(int x){
+        data=x;
+        next=NULL;
+    }
+};
+
+Node *insertEnd(Node *head,int x){
+    Node *temp=new Node(x);
+    if(head==NULL)return temp;
+    Node *curr=head;
+    while(curr->next!=NULL){
+        curr=curr->next;
+    }
+    curr->next=temp;
+    return head;
+    
+}
+
+Node *deleteHead(Node *head)
+{
+    if(!head) return nullptr;
+    else return head->next;
+}
+
+Node *deleteLast(Node *head)
+{
+    if(!head) return nullptr;
+    if(!head->next) {
+        delete head;
+        return nullptr;
+    }
+    Node *curr = head;
+    while(curr->next->next) curr=curr->next;
+    delete curr->next;
+    curr->next=nullptr;
+    return head;
+
+}
+
+Node *insert(Node*head,int n,int x)
+{
+    Node *tmp= new Node(x);
+    if(n==1) { // list is empty
+        tmp->next=head;
+        return tmp;
+    }
+    Node *curr=head;
+    for(int i=1;i<=n-2 && curr;i++) curr=curr->next;
+    if(!curr) return head;
+    tmp->next=curr->next;
+    curr->next=tmp;
+    return head;
+}
+
+int searchLL(Node*head , int x)
+{
+    Node* curr =head;
+    int c=1;
+
+    if(!head) return -1;
+    while(curr)
+    {
+        if(curr->data==x) return c;
+        c++;
+        curr=curr->next;
+    }
+    return -1;
+}
+
+
+int rec_searchLL(Node*head,int x)
+{
+    if(!head) return -1;
+    if(head->data==x)
+    {
+        return 1;
+    }
+    else {
+    int res= rec_searchLL(head->next,x);
+    if(res==-1) return -1;
+    else return res+1;
+    }
+
+}
+
+void printlist(Node *head){
+        Node *curr=head;
+        while(curr!=NULL){
+        cout<<curr->data<<" ";
+        curr=curr->next;
+        }
+}
+int main() 
+{ 
+	Node *head=NULL;
+	head=insert(head,1,10);
+	head=insert(head,2,20);
+	head=insert(head,3,30);
+	head=insert(head,4,40);
+	cout<<rec_searchLL(head,70);
+	return 0;
+} 

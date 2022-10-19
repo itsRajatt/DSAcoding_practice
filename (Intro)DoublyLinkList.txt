@@ -1,0 +1,99 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node * next;
+    Node *prev;
+    Node(int d)
+    {
+        data =d;
+        next = nullptr;
+        prev = nullptr;
+    }
+};
+
+Node *insertBegin(Node *head,int x)
+{
+    Node *t =new Node(x);
+    t->next = head;
+    if(head) head->prev=t;
+    return t;
+}
+
+Node *insertEnd(Node *head,int x)
+{
+    Node *tmp=new Node(x);
+    if(!head) return tmp;
+   
+    Node *curr=head;
+    while(curr->next) curr=curr->next;
+    curr->next=tmp;
+    tmp->prev=curr;
+    return head;
+}
+void printLL(Node *head)
+{
+    if(!head) cout<<-1<<" ";
+    while(head)
+    {
+        cout<<head->data<<" ";
+        head=head->next;
+    }
+}
+
+Node *reverse(Node *head)
+{
+   if(!head || !head->next) return head;
+   Node *prev=nullptr;
+   Node *curr=head;
+   while(curr)
+   {
+       prev=curr->prev;
+       curr->prev=curr->next;
+       curr->next=prev;
+       curr=curr->prev;
+   }
+   return prev->prev;
+}
+
+Node *deleteHead(Node *head)
+{
+    if(!head || !head->next) return nullptr; // can del. head->next's head too
+    Node *t=head->next;
+    t->prev=nullptr;
+    delete head;
+    head=t;
+    return head;
+    
+}
+
+Node *deleteLast(Node *head)//reduce complexity via using tail pointer 
+{
+    if(!head) return nullptr;
+ if(!head->next)
+    {
+        delete head;
+        return nullptr;
+    }
+    else 
+    {
+        Node *t=head;
+        while(t->next) t=t->next;
+        t->prev->next=nullptr
+        delete t;
+    }
+    return head;
+}
+int main() {
+    // Write C++ code here
+    Node *head=new Node(10);
+    Node *s=new Node(20);
+    head->next=s;
+    s->prev=head;
+    printLL(deleteLast(head));
+
+    return 0;
+}

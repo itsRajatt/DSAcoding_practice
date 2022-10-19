@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+#include<algorithm>
+using namespace std;
+//check recursion and look for sub problems ; if yes then it's DP problem
+
+int LCS(string s1, string s2, int m, int n)
+{
+    if(m==0 || n==0) return 0;
+    
+    if(s1[m-1]==s2[n-1])
+    {
+        return 1+LCS(s1,s2,m-1,n-1);
+    }
+    else {
+        return max(LCS(s1,s2,m-1,n),LCS(s1,s2,m,n-1));
+    }
+}
+
+//require 2d array as 2 parameters change in calling
+//O(m*n)
+//memoization
+int mem[1000][1000];
+int o_LCS(string s1, string s2, int m, int n)
+{
+    if(mem[m][n]!=-1) return mem[m][n];  
+    if(m==0 || n==0) mem[m][n]={0};
+    else {
+        if(s1[m-1]==s2[n-1]) mem[m][n]=1+o_LCS(s1,s2,m-1,n-1);
+        else mem[m][n]=max(o_LCS(s1,s2,m-1,n),o_LCS(s1,s2,m,n-1));
+    }
+    return mem[m][n];
+}
+
+
+//tabulation
+//make aray of size [m+1][n+1] , i,j  represent m and n in here , fill 0 in i=0 and j=0 . 
+
+int tLCS(string s1, string s2) //O(m*n)
+{
+    int m = s1.length(), n = s2.length();
+    int dp[m+1][n+1];
+    
+    for(int i=0;i<=m;i++)
+        dp[i][0]=0;
+    for(int j=0;j<=n;j++)
+        dp[0][j]=0;
+        
+    for(int i=1; i<=m; i++)
+    {
+        for(int j=1; j<=n; j++)
+        {
+            if(s1[i-1]==s2[j-1])
+                dp[i][j] = 1 + dp[i-1][j-1];
+            else
+                dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+        }
+    }
+    
+    return dp[m][n];
+}
+
+int main() {
+	string a="ABXY";
+	string b="ABX";
+
+	cout<<tLCS(a,b);
+	return 0;
+}

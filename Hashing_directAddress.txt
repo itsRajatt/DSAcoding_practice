@@ -1,0 +1,36 @@
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+// for larger values can use as table[i-1000] and fill (but then it is called hash function)
+
+
+using namespace std;
+
+bool search(bool *a,int key)
+{
+	if(a[key-1]==1) return true;
+	return false;
+}
+
+void insert(bool *a,int val)
+{
+	a[val-1]=1;
+}
+
+void del(bool *a,int k)
+{
+	a[k-1]=false;
+}
+
+
+int main() {
+	// Your code goes here;
+	bool hash[1000];
+	for(int i=0;i<1000;i++) hash[i]=false; // direct address table
+	// can't handle large keys , floating points can't be used , keys can be string or address and problem caused
+	insert(hash,5);
+	cout<<search(hash,5);
+
+	return 0;
+}

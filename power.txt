@@ -1,0 +1,39 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+//O(logn)
+int power(int x, int n)
+{
+    
+  	if(n == 0)
+		return 1;
+
+	if(n % 2 == 0)
+		return power(x,n/2)*power(x,n/2);
+	else
+		return power(x,n/2) * x; 
+
+}
+
+int oPower(int x,int n)//int M(modulo)
+{
+    
+    int res=1;
+    while(n>0)
+    {
+        if(n%2) //can write n&1
+        {
+            res*=x;//res=(res*x)%M if req use long long too
+        }
+            x*=x;// modulo M too
+            n/=2; // use n>>2
+        }
+        return res;
+}
+
+int main() {
+    // Write C++ code here
+    cout << oPower(10,4);
+
+    return 0;
+}

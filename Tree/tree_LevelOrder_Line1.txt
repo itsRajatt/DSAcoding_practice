@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node  
+{ 
+  int key; 
+  struct Node *left; 
+  struct Node *right; 
+  Node(int k){
+      key=k;
+      left=right=NULL;
+  }
+};
+
+void printLevelLine(Node *root){ //O(n+h(nulls  processing for every level)) &aux space = O(width) / O(n) for perfect BTree
+    if(!root) return; //just push NULL when one level is entered into the queue
+    queue<Node*>q; // if null occurs then push \n and push another null into it
+    q.push(root);
+    q.push(NULL);
+    while(q.size()>1)
+    {
+        Node *curr=q.front();
+        q.pop();
+        if(!curr) 
+        {
+            cout<<"\n";
+            q.push(NULL);
+            continue;
+        }
+        cout<<curr->key<<" ";
+        
+        if(curr->left) q.push(curr->left);
+        if(curr->right) q.push(curr->right);
+    }
+}  
+
+int main() {
+	
+	Node *root=new Node(10);
+	root->left=new Node(20);
+	root->right=new Node(30);
+	root->left->left=new Node(40);
+	root->left->right=new Node(50);
+	root->right->left=new Node(60);
+	root->right->right=new Node(70);
+	
+	printLevelLine(root);
+}

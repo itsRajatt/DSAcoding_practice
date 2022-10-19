@@ -1,0 +1,64 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+void swap(int &a,int &b)
+{
+    int t=a;
+    a=b;
+    b=t;
+}
+
+void rev(int *a,int n,int d)
+{
+    while(n<d) 
+    {
+        swap(a[n],a[d]);
+        n++;
+        d--;
+    }
+}
+
+void l_rot1(int *a,int n)
+{
+    int c=a[0];
+    for(int i=0;i<n;i++)
+    {
+      a[i]=a[i+1];
+    }
+    a[n-1]=c;
+}
+
+void d_rot(int *a,int n,int d) //O(n*d) time
+{
+    while(d>0)
+    {
+        l_rot1(a,n);
+        d--;
+    }
+}
+
+void d_rot1(int *a,int n,int d) //O(d) space and O(n) time
+{
+    int t[d];
+    for(int i=0;i<d;i++) t[i]=a[i];
+    for(int i=d;i<n;i++) a[i-d]=a[i];
+    for(int i=0;i<d;i++) a[n+i-d]=t[i];
+}
+
+void o_drot(int *a,int n,int d) //O(n) time and O(1) space // reversal algorithm
+{
+    rev(a,0,d-1);
+    rev(a,d,n-1);
+    rev(a,0,n-1);
+}
+
+int main() {
+    // Write C++ code here
+    int a[]={1,2,2,3,4,4,5};
+    o_drot(a,7,3);
+    for(int i=0;i<7;i++) std::cout<<a[i]<<" ";
+    
+    
+    return 0;
+}

@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cmath>
+#include <bits/stdc++.h> 
+#include <climits>
+using namespace std;
+
+//mayn't work all the time
+//examples -->
+//activity selection , fractional Knapsack,job sequencing , prim's , kruskal's,dijkstra's,huffman coding
+//finding close to optimal solutions for NP Hard Problems like travelling salesman
+/*
+general greedy approach
+
+getOpt(item a[],int n)
+{
+    init: res=0;
+    while(all items not considered)
+    {
+        i=selectItem();
+        if(feasible(i)) res+=i;
+    }
+    return res
+}
+
+
+
+*/
+
+
+
+int minCoins(int coin[], int n, int amount)
+{	
+    	int res=0;
+    	sort(coin,coin+n,greater<int>());
+    	
+    	for(int i=0;i<n;i++)
+    	{
+    	    int c =floor(amount/coin[i]);
+    	    res+=c;
+    	    amount-=c*coin[i];
+    	    
+    	    if(!amount) break;
+    	}
+    	return res;
+}
+    
+
+
+int main() {
+	
+      int coin[] = {5, 10, 2, 1}, n = 4, amount = 57;
+      
+      cout<<minCoins(coin, n, amount);
+
+    
+}

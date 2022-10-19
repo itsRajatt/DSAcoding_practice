@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    
+    Node(int x)
+    {
+        data=x;
+       next=nullptr
+    }
+};
+
+Node *segregateEvenOdd(Node *head)
+{
+    //navie --> find last node and mark as last  , then traverse again and find all odd again and keep inserting them using last as head , leave even nodes as it is
+    //Optimize in 1 traversal --> maintain 4 ptrs e_str end and off_strt and end . First sublist has even second has odd in same order, link last even to odd first sublist and return
+    
+    Node *ev_s=nullptr , *ev_e=nullptr , *od_s=nullptr , *od_e=nullptr;
+    
+    for(Node *curr=head;curr;curr=curr->next)
+    {
+        int x=curr->data;
+        if(x%2==0) 
+        {
+            if(!ev_s) ev_s=ev_e=curr;
+        else {
+            ev_e->next=curr;
+            ev_e=ev_e->next;
+        }
+    }
+    else
+    {
+        if(!od_s) od_s=od_e=nullptr;
+        else{
+         od_e->next=curr;
+        od_e=od_e->next;
+        }
+    }
+}
+
+    if(!od_s || !ev_s) return head;
+    ev_e->next=od_s;
+        od_e->next=nullptr;
+    return head;
+}
+
+
+
+int main()
+{
+    
+    
+    
+    return 0;
+}

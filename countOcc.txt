@@ -1,0 +1,18 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int count(int *a ,int k ,int n)
+{
+    int first = firstOcc(a,k,n);
+    if(first==-1) return 0;
+    else return lastOcc(a,k,n)-first+1;
+}
+
+int main() {
+    // Write C++ code here
+    int a[]={1,2,3,3,3,4,5};
+    cout<<it_lastOcc(a,3,7);
+
+    return 0;
+}

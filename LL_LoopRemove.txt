@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    
+    Node(int x)
+    {
+        data=x;
+       next=nullptr
+    }
+};
+
+void detectRemoveLoop(Node* head) // detect loop point and start s(keeping f there only) from start again & f moves at same speed as s. 
+
+//to find length of loop : same floyd loop detect , then fix a pointer on common node and loop till s or f reach there again and use a counter
+
+{ 
+    Node *s,*f;
+    s=f=head;
+    
+    while(f->next && f)
+    {
+        s=s->next;
+        f=f->next->next;
+        if(s==f) break;
+    }
+    if(s!=f) return;
+    s=head;
+    
+    while(s->next !=f->next)
+    {
+        s=s->next;
+        f=f->next;
+    }
+    f->next = nullptr;
+    
+}
+
+
+
+int main()
+{
+    
+    
+    
+    return 0;
+}

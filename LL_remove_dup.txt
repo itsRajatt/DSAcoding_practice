@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    
+    Node(int x)
+    {
+        data=x;
+       next=nullptr
+    }
+};
+
+void remDup(Node *head)
+{
+   Node *curr=head;
+    
+    while(curr->next && curr)
+    {
+        if(curr->data == curr->next->data)
+        {
+            Node *t=curr->next;
+            curr->next=curr->next->next;
+            delete t;
+        }
+        else curr=curr->next;
+    }
+}
+
+
+
+int main()
+{
+    
+    
+    
+    return 0;
+}

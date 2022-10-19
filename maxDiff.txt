@@ -1,0 +1,38 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int max_dif(int *a,int n) //O(n*n)
+{
+    int m=a[1]-a[0];
+    
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j=i+1;j<n;j++)
+        {
+            m=max(m,(a[j]-a[i]));
+        }
+    }
+    return m;
+}
+
+int o_mdif(int *a,int n) // by tracking minVal O(n)
+{
+    int m=a[1]-a[0], minVal=a[0];
+    for(int j=1;j<n;j++)
+    {
+        m=max(m,(a[j]-minVal));
+        minVal=min(a[j],minVal);
+    }
+    
+    return m;
+}
+
+int main() {
+    // Write C++ code here
+    int a[]={0,10,4,6,2};
+    cout<<o_mdif(a,5);
+    
+    
+    return 0;
+}

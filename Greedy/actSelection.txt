@@ -1,0 +1,41 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+/* sort according to end time , then check if end and start overlaps and increment res if doesn't clash
+*/
+
+
+bool myCmp(pair<int,int> a, pair<int,int> b)
+{
+    return (a.second < b.second);
+}
+
+int actSel(pair<int,int>a[],int n)
+{
+    sort(a,a+n,myCmp);
+    
+    int prev=0;
+    int res=1;
+    
+    for(int curr=1;curr<n;curr++)
+    {
+        if(a[curr].first >=a[prev].second)
+        {
+            res++;
+            prev=curr;
+        }
+    }
+    
+    return res;
+}
+
+int main() {
+    // Write C++ code here
+    pair <int, int> arr[] = {make_pair(12, 25), make_pair(10, 20), make_pair(20, 30)};
+
+	int n = 3;
+    cout<<actSel(arr,n);
+
+    return 0;
+}

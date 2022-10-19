@@ -1,0 +1,42 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int siz(int *a,int n)
+{
+    int t[n]={0};
+    t[0]=a[0];
+    int res =1;
+    for(int i=1;i<n;i++)
+    {
+        if(t[res-1]!=a[i]) { t[res]=a[i]; res++;}
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+        a[i]=t[i];
+    }
+    return res;
+}
+
+int o_siz(int *a,int n)
+{
+    int res=1;
+    for(int i=1;i<n;i++)
+    {
+        if(a[res-1]!=a[i]) 
+        {
+            a[res]=a[i];
+            res++;
+        }
+    }
+    return res;
+}
+
+int main() {
+    // Write C++ code here
+    int a[]={1,1,3,4,4,6};
+    cout<<o_siz(a,6);
+
+    return 0;
+}

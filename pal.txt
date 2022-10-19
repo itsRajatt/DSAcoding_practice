@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool pal(int n)
+{
+    int ans=0 , temp=n;
+    while(temp!=0)
+    {
+        int c=temp%10;
+        ans = ans*10 + c;
+        temp=temp/10;
+    }
+    
+    return (ans==n);
+}
+
+int main()
+{
+    cout<<pal(1221);
+    return 0;
+}

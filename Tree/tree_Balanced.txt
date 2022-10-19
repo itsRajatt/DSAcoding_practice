@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node  
+{ 
+  int key; 
+  struct Node *left; 
+  struct Node *right; 
+  Node(int k){
+      key=k;
+      left=right=NULL;
+  }
+};
+
+int height(Node *root)
+{
+    if(!root) return 0;
+    return (1+max(height(root->left),height(root->right)));
+}
+
+bool isBalanced(Node *root) //O(n*n)
+{
+    if(!root) return 1;
+    int l_hei=height(root->left);
+    int r_hei=height(root->right);
+    
+    return (abs(l_hei-r_hei)<=1 && isBalanced(root->left)  && isBalanced(root->right));
+}
+
+bool isBalOpt(Node *root) //O(n)
+{
+    if(!root) return 0;
+    
+    int lh=isBalOpt(root->left);
+    if(lh==-1) return -1;
+    
+    int rh=isBalOpt(root->right);
+    if(rh==-1) return -1;
+    
+    if(abs(lh-rh)>1) return -1;
+    
+    return max(lh,rh)+1;
+}
+
+int main() {
+	
+	Node *root=new Node(10);
+	root->left=new Node(2);
+	root->right=new Node(8);
+	root->right->left=new Node(3);
+	root->right->right=new Node(5);
+	
+	cout<<isBalanced(root);
+}

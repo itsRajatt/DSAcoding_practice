@@ -1,0 +1,23 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+
+bool k_bit(int n, int k)
+{
+    if(n&1<<(k-1)) return 1;
+    return 0;
+}
+
+bool k_bit1(int n, int k)
+{
+    if(n>>(k-1)&1) return 1;
+    return 0;
+}
+
+
+
+int main() {
+    // Write C++ code here
+    std::cout << k_bit1(5,3);
+
+    return 0;
+}

@@ -1,0 +1,51 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+    Node(int x)
+    {
+        data=x;
+        next=nullptr;
+    }
+};
+
+Node *sortedInsert(Node *head, int x)
+{
+    Node *t=new Node(x);
+    
+    if(!head) return t;
+        if(x<head->data) {
+            t->next=head;
+            return t;
+        }
+        
+    Node *curr = head;
+    while(curr->next && curr->next->data<x)//important to check for nulls in LL
+    {
+        curr=curr->next;
+    }
+    t->next=curr->next;
+    curr->next=t;
+    return head;
+}
+
+void printLL(Node *head)
+{
+    if(!head) {cout<<"-1"<<" "; return ;}
+    cout<<head->data<<" ";
+    head=head->next;
+}
+
+int main() {
+    Node *head=new Node(5);
+    head->next=new Node(10);
+    head->next->next=new Node(25);
+    head=sortedInsert(head,15);
+    printLL(head);
+
+    return 0;
+}

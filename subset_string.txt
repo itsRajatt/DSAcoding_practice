@@ -1,0 +1,22 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+//subset
+void subset(string &s,string curr="0",int i=0)
+{
+    if(i==s.length())
+    {
+        cout<<curr;
+        return ;
+    }
+    subset(s,curr,i+1);
+    subset(s,curr+s[i],i+1);
+}
+
+int main() {
+    // Write C++ code here
+    string S = "ABC";
+    subset(S);
+
+    return 0;
+}

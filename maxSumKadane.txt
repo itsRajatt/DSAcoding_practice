@@ -1,0 +1,38 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxSub(int *a,int n)//O(n*n)
+{
+    int res=a[0];
+    for(int i=0;i<n;i++)
+    {
+        int cur=0;
+        for(int j=i;j<n;j++)
+        {
+            cur+=a[j];
+            res=max(res,cur);
+        }
+    }
+    return res;
+}
+
+int kadaneMax(int *a, int n)
+{
+    int res=a[0];
+    int maxEnd=a[0];
+    for(int i=0;i<n;i++)
+    {
+        maxEnd=max(maxEnd+a[i],a[i]);
+        res=max(res,maxEnd);
+    }
+    return res;
+}
+
+int main() {
+    // Write C++ code here
+   int a[]={1,0,1,1,1,0,1,1,1,1};
+   cout<<kadaneMax(a,10);
+
+    return 0;
+}
